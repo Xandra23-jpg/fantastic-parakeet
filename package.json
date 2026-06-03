@@ -1,0 +1,22 @@
+{
+  "name": "project-chaos",
+  "version": "0.1.0",
+  "description": "Multiplayer action game - MVP",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "concurrently 'npm:dev --workspace=frontend' 'npm:dev --workspace=backend'",
+    "build": "npm run build --workspace=frontend && npm run build --workspace=backend",
+    "test": "npm test --workspaces",
+    "start": "npm start --workspace=backend",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down",
+    "docker:build": "docker-compose build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
