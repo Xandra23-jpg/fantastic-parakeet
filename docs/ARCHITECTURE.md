@@ -3,43 +3,43 @@
 ## High-Level Overview
 
 ```
-┌─────────────────────────────────────────────────────────────┐
+┌──────────────────────────────────────────────────────────────────────────┐
 │                     FRONTEND LAYER                          │
 │  React Native (iOS/Android) + React Web (Browser)           │
 │  - Phaser 3 Game Engine (60 FPS rendering)                 │
 │  - Redux State Management                                   │
 │  - Socket.io WebSocket Client                              │
-└────────────────┬────────────────────────────────────────────┘
+└──────────────────────────────┬──────────────────────────────────────────────┘
                  │
-    ┌────────────┴────────────┐
-    │                         │
-    ▼                         ▼
-┌────────────────┐    ┌──────────────────┐
-│  HTTP REST API │    │  WebSocket       │
-│  (JSON)        │    │  (Real-time Sync)│
-└────────┬───────┘    └────────┬─────────┘
+    ┌────────────┴──────────────────┬──────────────────────────┐
+    │                               │
+    ▼                               ▼
+┌──────────────────┐    ┌────────────────────────────────┐
+│  HTTP REST API   │    │  WebSocket                      │
+│  (JSON)          │    │  (Real-time Sync)              │
+└─────────────┬────┘    └─────────────┬────────────────────┘
          │                     │
-         └────────────┬────────┘
+         └─────────────┬────────┘
                       ▼
-      ┌───────────────────────────────┐
-      │    BACKEND LAYER              │
-      │    Node.js + Express.js       │
-      │  - Authentication (JWT)       │
-      │  - Matchmaking Queue (Redis)  │
-      │  - Game State Engine          │
-      │  - Match Orchestration        │
-      └─────────┬──────────────────────┘
+      ┌────────────────────────────────────────────────────┐
+      │    BACKEND LAYER                                   │
+      │    Node.js + Express.js                            │
+      │  - Authentication (JWT)                            │
+      │  - Matchmaking Queue (Redis)                       │
+      │  - Game State Engine                               │
+      │  - Match Orchestration                             │
+      └────────────────┬──────────────────────────────────┘
                 │
-        ┌───────┴───────┬──────────────┐
-        │               │              │
-        ▼               ▼              ▼
-   ┌─────────┐  ┌──────────┐   ┌────────────┐
-   │PostgreSQL│  │  Redis   │   │  Cloud    │
-   │Database  │  │  Cache   │   │  Storage  │
-   │- Players │  │- Sessions│   │- Assets   │
-   │- Matches │  │- Leaderboards  │- Skins   │
-   │- Inv.    │  │- Queues  │   │- Maps    │
-   └─────────┘  └──────────┘   └────────────┘
+        ┌───────┴────┬──────────────┬────────────────────┐
+        │            │              │                    │
+        ▼            ▼              ▼                    ▼
+   ┌─────────┐  ┌──────────┐   ┌──────────┐      ┌──────────────┐
+   │PostgreSQL  │  Redis    │   │  Cloud   │      │  Monitoring  │
+   │Database    │  Cache    │   │ Storage  │      │  & Logging   │
+   │- Players   │- Sessions │   │- Assets  │      │              │
+   │- Matches   │- Leaderboards │- Skins   │      │              │
+   │- Inv.      │- Queues   │   │- Maps    │      │              │
+   └─────────┘  └──────────┘   └──────────┘      └──────────────┘
 ```
 
 ## Component Breakdown
